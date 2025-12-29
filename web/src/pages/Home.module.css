@@ -1,0 +1,215 @@
+.header {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.sublabel {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+    color: #fff;
+}
+
+.subtitle {
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+    max-width: 500px;
+}
+
+.statsCard {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.statBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.statLabel {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.statValueBlue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent-blue);
+}
+
+.statTotal {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+}
+
+.statDivider {
+    width: 1px;
+    height: 40px;
+    background-color: var(--color-border);
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.tabs {
+    display: flex;
+    background-color: var(--color-surface);
+    padding: 4px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.tab {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+}
+
+.activeTab {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.searchBar {
+    position: relative;
+    width: 400px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+}
+
+.searchInput {
+    width: 100%;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    background-color: var(--color-surface);
+    color: var(--color-text-muted);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    vertical-align: middle;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tr:hover td {
+    background-color: var(--color-surface-hover);
+}
+
+.playerCell {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatarPlaceholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), #a03040);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.playerName {
+    font-weight: 600;
+    color: #fff;
+}
+
+.playerAuth {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.timeBadge {
+    background-color: rgba(60, 150, 255, 0.1);
+    color: #60a5fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.dateCell {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.mapName {
+    font-weight: 600;
+}
