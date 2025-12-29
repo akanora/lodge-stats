@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useServer } from '../context/ServerContext';
 import { fetchStats } from '../services/api';
 import { Search } from 'lucide-react';
@@ -31,6 +32,37 @@ export default function Home() {
         const interval = setInterval(fetchServerStats, 30000);
         return () => clearInterval(interval);
     }, [serverTick]);
+
+    // Handle search
+    const handleSearch = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+
+        if (query.length >= 3) {
+            setIsSearching(true);
+            fetchStats('search', serverTick, { q: query })
+                .then(res => {
+                    setSearchResults(res);
+                    setIsSearching(false);
+                })
+                .catch(err => {
+                    console.error('Search failed:', err);
+                    setIsSearching(false);
+                });
+        } else {
+            setSearchResults([]);
+        }
+    };
+
+    // Convert SteamID3 to SteamID2 format
+    const convertToSteamID2 = (steamid3) => {
+        if (!steamid3 || isNaN(steamid3)) return steamid3;
+
+        const accountId = parseInt(steamid3);
+        const y = accountId % 2;
+        const z = Math.floor(accountId / 2);
+        return `STEAM_0:${y}:${z}`;
+    };
 
     // Fetch recent times/records
     useEffect(() => {
@@ -92,15 +124,6 @@ export default function Home() {
                         Recent Records
                     </button>
                 </div>
-
-                <div className={styles.searchBar}>
-                    <Search size={18} className={styles.searchIcon} />
-                    <input
-                        type="text"
-                        placeholder="Search by Steam ID or Player Name..."
-                        className={styles.searchInput}
-                    />
-                </div>
             </div>
 
             <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
@@ -131,8 +154,10 @@ export default function Home() {
                                         <div className={styles.playerCell}>
                                             <div className={styles.avatarPlaceholder}>{row.name.charAt(0).toUpperCase()}</div>
                                             <div>
-                                                <div className={styles.playerName}>{row.name}</div>
-                                                <div className={styles.playerAuth}>{row.auth}</div>
+                                                <Link to={`/player/${row.auth}`} className={styles.playerName}>
+                                                    {row.name}
+                                                </Link>
+                                                <div className={styles.playerAuth}>{convertToSteamID2(row.auth)}</div>
                                             </div>
                                         </div>
                                     </td>
@@ -140,7 +165,7 @@ export default function Home() {
                                         <span className={styles.timeBadge}>{row.time}</span>
                                     </td>
                                     <td className={styles.dateCell}>
-                                        {new Date(row.date * 1000).toLocaleDateString()}
+                                        {new Date(row.date * 1000).toLocaleDateString()} {new Date(row.date * 1000).toLocaleTimeString()}
                                     </td>
                                 </tr>
                             ))
