@@ -48,6 +48,15 @@ if ($endpoint) {
         case 'stats':
             include 'endpoints/stats.php';
             break;
+        case 'player':
+            include 'endpoints/player.php';
+            break;
+        case 'sourcebans':
+            include 'endpoints/sourcebans.php';
+            break;
+        case 'map':
+            include 'endpoints/map.php';
+            break;
         default:
             $response['message'] = 'Unknown endpoint';
             break;

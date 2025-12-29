@@ -13,6 +13,17 @@
     justify-content: space-between;
 }
 
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo {
+    height: 32px;
+    width: auto;
+}
+
 .brandText {
     font-size: 1.5rem;
     font-weight: 800;

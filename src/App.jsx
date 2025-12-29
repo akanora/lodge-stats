@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import TopPlayers from './pages/TopPlayers';
+import PlayerProfile from './pages/PlayerProfile';
+import MapRecords from './pages/MapRecords';
 import { ServerProvider } from './context/ServerContext';
 import './index.css';
 
@@ -15,6 +17,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/top" element={<TopPlayers />} />
+              <Route path="/player/:steamid" element={<PlayerProfile />} />
+              <Route path="/map" element={<MapRecords />} />
               {/* <Route path="/bans" element={<Bans />} /> */}
             </Routes>
           </main>
