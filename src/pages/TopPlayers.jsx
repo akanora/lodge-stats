@@ -130,7 +130,7 @@ export default function TopPlayers() {
                                         <div className={styles.playerCell}>
                                             <div className={styles.avatarPlaceholder}>{row.name.charAt(0).toUpperCase()}</div>
                                             <div>
-                                                <Link to={`/ player / ${row.auth} `} className={styles.playerName}>
+                                                <Link to={`/player/${row.auth}`} className={styles.playerName}>
                                                     {row.name}
                                                 </Link>
                                                 <div className={styles.playerAuth}>{convertToSteamID2(row.auth)}</div>
