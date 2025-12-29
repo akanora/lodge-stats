@@ -26,6 +26,9 @@ export default function MapRecords() {
     const [loading, setLoading] = useState(false);
     const [selectedStyle, setSelectedStyle] = useState(0);
     const [selectedTrack, setSelectedTrack] = useState(0);
+    const [allMaps, setAllMaps] = useState([]);
+    const [filteredMaps, setFilteredMaps] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
     const convertToSteamID2 = (steamid3) => {
         if (!steamid3 || isNaN(steamid3)) return steamid3;
@@ -46,8 +49,41 @@ export default function MapRecords() {
         return date.toLocaleDateString();
     };
 
+    // Fetch all maps for autocomplete
+    useEffect(() => {
+        fetchStats('maps', serverTick)
+            .then(data => {
+                setAllMaps(data);
+            })
+            .catch(err => console.error('Failed to fetch maps:', err));
+    }, [serverTick]);
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setSearchInput(value);
+
+        if (value.length >= 2) {
+            const filtered = allMaps.filter(map =>
+                map.toLowerCase().includes(value.toLowerCase())
+            ).slice(0, 15);
+            setFilteredMaps(filtered);
+            setShowSuggestions(filtered.length > 0);
+        } else {
+            setFilteredMaps([]);
+            setShowSuggestions(false);
+        }
+    };
+
+    const handleSuggestionClick = (map) => {
+        setSearchInput(map);
+        setShowSuggestions(false);
+        setMapName(map);
+        navigate(`/map?map=${encodeURIComponent(map)}`);
+    };
+
     const handleSearch = (e) => {
         e.preventDefault();
+        setShowSuggestions(false);
         if (searchInput.trim()) {
             setMapName(searchInput.trim());
             navigate(`/map?map=${encodeURIComponent(searchInput.trim())}`);
@@ -79,17 +115,36 @@ export default function MapRecords() {
 
             <div className={styles.header}>
                 <h1>Map Records</h1>
-                <form onSubmit={handleSearch} className={styles.searchForm}>
-                    <Search size={18} className={styles.searchIcon} />
-                    <input
-                        type="text"
-                        placeholder="Enter map name (e.g., bhop_cyberspace)..."
-                        value={searchInput}
-                        onChange={(e) => setSearchInput(e.target.value)}
-                        className={styles.searchInput}
-                    />
-                    <button type="submit" className={styles.searchBtn}>Search</button>
-                </form>
+                <div className={styles.searchWrapper}>
+                    <form onSubmit={handleSearch} className={styles.searchForm}>
+                        <Search size={18} className={styles.searchIcon} />
+                        <input
+                            type="text"
+                            placeholder="Enter map name (e.g., bhop_cyberspace)..."
+                            value={searchInput}
+                            onChange={handleInputChange}
+                            onFocus={() => searchInput.length >= 2 && filteredMaps.length > 0 && setShowSuggestions(true)}
+                            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                            className={styles.searchInput}
+                            autoComplete="off"
+                        />
+                        <button type="submit" className={styles.searchBtn}>Search</button>
+                    </form>
+
+                    {showSuggestions && filteredMaps.length > 0 && (
+                        <div className={styles.autocomplete}>
+                            {filteredMaps.map((map, idx) => (
+                                <div
+                                    key={idx}
+                                    className={styles.autocompleteItem}
+                                    onMouseDown={() => handleSuggestionClick(map)}
+                                >
+                                    {map}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
 
             {mapName && (

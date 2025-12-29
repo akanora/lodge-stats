@@ -57,6 +57,9 @@ if ($endpoint) {
         case 'map':
             include 'endpoints/map.php';
             break;
+        case 'maps':
+            include 'endpoints/maps.php';
+            break;
         default:
             $response['message'] = 'Unknown endpoint';
             break;

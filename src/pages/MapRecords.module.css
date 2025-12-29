@@ -33,11 +33,49 @@
     color: var(--text-primary);
 }
 
+.searchWrapper {
+    position: relative;
+    max-width: 600px;
+}
+
 .searchForm {
     position: relative;
     display: flex;
     gap: 0.5rem;
-    max-width: 600px;
+}
+
+.autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 90px;
+    background: #1a1f2e;
+    border: 1px solid #2d3548;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.autocompleteItem {
+    padding: 0.875rem 1rem;
+    cursor: pointer;
+    color: #e2e8f0;
+    transition: all 0.15s ease;
+    border-bottom: 1px solid #2d3548;
+    font-size: 0.95rem;
+}
+
+.autocompleteItem:last-child {
+    border-bottom: none;
+}
+
+.autocompleteItem:hover {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.1), transparent);
+    color: #fff;
+    padding-left: 1.25rem;
 }
 
 .searchIcon {
@@ -49,7 +87,7 @@
 }
 
 .searchInput {
-    flex: 1;
+    width: 100%;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     padding: 0.75rem 1rem 0.75rem 3rem;
