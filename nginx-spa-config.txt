@@ -1,0 +1,13 @@
+# Nginx configuration for SPA routing
+# Add this inside your server block for the stats directory
+
+location /stats/ {
+    try_files $uri $uri/ /stats/index.html;
+}
+
+# Alternative if the above doesn't work:
+# location /stats {
+#     alias /var/www/html/stats;
+#     try_files $uri $uri/ /stats/index.html;
+#     index index.html;
+# }
