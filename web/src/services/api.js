@@ -1,9 +1,9 @@
 export const MOCK_RECENT_TIMES = [
-    { map: "bhop_badges", name: "bhop_master", style: 0, time: 102.33, date: Date.now() / 1000 - 120, auth: "STEAM_0:1:482910" },
-    { map: "bhop_lego2", name: "speed_demon", style: 0, time: 55.12, date: Date.now() / 1000 - 300, auth: "STEAM_0:0:119283" },
-    { map: "bhop_arcane", name: "bunny_hopper", style: 1, time: 130.45, date: Date.now() / 1000 - 900, auth: "STEAM_0:1:554321" },
-    { map: "bhop_colors", name: "air_strafer", style: 0, time: 192.89, date: Date.now() / 1000 - 1500, auth: "STEAM_0:1:123123" },
-    { map: "bhop_moments", name: "kz_legend", style: 2, time: 245.11, date: Date.now() / 1000 - 3600, auth: "STEAM_0:0:987654" },
+    { map: "bhop_badges", name: "bhop_master", style: 0, time: 102.33, date: Date.now() / 1000 - 120, auth: "STEAM_0:1:482910", jumps: 245, strafes: 198, sync: 92.5, points: 150 },
+    { map: "bhop_lego2", name: "speed_demon", style: 0, time: 55.12, date: Date.now() / 1000 - 300, auth: "STEAM_0:0:119283", jumps: 132, strafes: 105, sync: 88.3, points: 200 },
+    { map: "bhop_arcane", name: "bunny_hopper", style: 1, time: 130.45, date: Date.now() / 1000 - 900, auth: "STEAM_0:1:554321", jumps: 312, strafes: 267, sync: 85.7, points: 120 },
+    { map: "bhop_colors", name: "air_strafer", style: 0, time: 192.89, date: Date.now() / 1000 - 1500, auth: "STEAM_0:1:123123", jumps: 456, strafes: 389, sync: 91.2, points: 180 },
+    { map: "bhop_moments", name: "kz_legend", style: 2, time: 245.11, date: Date.now() / 1000 - 3600, auth: "STEAM_0:0:987654", jumps: 523, strafes: 445, sync: 87.9, points: 95 },
 ];
 
 export const MOCK_TOP_PLAYERS = [

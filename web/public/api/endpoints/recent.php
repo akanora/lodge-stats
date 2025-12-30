@@ -12,7 +12,7 @@ $sql = "";
 if ($type == 'records') {
     // Records (WRs) logic
     // Simplified query
-    $sql = "SELECT p.map, u.name, p.style, p.time, p.date, u.auth 
+    $sql = "SELECT p.map, u.name, p.style, p.time, p.date, u.auth, p.jumps, p.strafes, p.sync, p.points 
             FROM playertimes p 
             JOIN users u ON p.auth = u.auth 
             WHERE p.time = (
@@ -23,7 +23,7 @@ if ($type == 'records') {
             ORDER BY p.date DESC LIMIT " . RECORD_LIMIT_LATEST;
 } else {
     // Recent Times logic
-    $sql = "SELECT p.map, u.name, p.style, p.time, p.date, u.auth 
+    $sql = "SELECT p.map, u.name, p.style, p.time, p.date, u.auth, p.jumps, p.strafes, p.sync, p.points 
             FROM playertimes p 
             JOIN users u ON p.auth = u.auth 
             ORDER BY date DESC LIMIT " . RECORD_LIMIT_LATEST;

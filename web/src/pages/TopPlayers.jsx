@@ -90,17 +90,17 @@ export default function TopPlayers() {
                         Top Playtime
                     </button>
                 </div>
-            </div>
 
-            <div className={styles.searchBar} style={{ marginBottom: '1.5rem', maxWidth: '600px' }}>
-                <Search size={18} className={styles.searchIcon} />
-                <input
-                    type="text"
-                    placeholder="Search by Steam ID or Player Name..."
-                    className={styles.searchInput}
-                    value={searchQuery}
-                    onChange={handleSearch}
-                />
+                <div className={styles.searchBar}>
+                    <Search size={18} className={styles.searchIcon} />
+                    <input
+                        type="text"
+                        placeholder="Search by Steam ID or Player Name..."
+                        className={styles.searchInput}
+                        value={searchQuery}
+                        onChange={handleSearch}
+                    />
+                </div>
             </div>
 
             <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
@@ -130,7 +130,7 @@ export default function TopPlayers() {
                                         <div className={styles.playerCell}>
                                             <div className={styles.avatarPlaceholder}>{row.name.charAt(0).toUpperCase()}</div>
                                             <div>
-                                                <Link to={`/ player / ${row.auth} `} className={styles.playerName}>
+                                                <Link to={`/player/${row.auth}`} className={styles.playerName}>
                                                     {row.name}
                                                 </Link>
                                                 <div className={styles.playerAuth}>{convertToSteamID2(row.auth)}</div>

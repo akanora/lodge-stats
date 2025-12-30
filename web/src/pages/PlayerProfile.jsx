@@ -70,8 +70,8 @@ export default function PlayerProfile() {
 
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
-        const secs = (seconds % 60).toFixed(3);
-        return mins > 0 ? `${mins}:${secs.padStart(6, '0')}` : `${secs}s`;
+        const secs = (seconds % 60).toFixed(2);
+        return mins > 0 ? `${mins}:${secs.padStart(5, '0')}` : `${secs}s`;
     };
 
     const formatDate = (timestamp) => {
@@ -138,6 +138,10 @@ export default function PlayerProfile() {
                             <tr>
                                 <th>Map</th>
                                 <th>Time</th>
+                                <th>Jumps</th>
+                                <th>Strafes</th>
+                                <th>Sync</th>
+                                <th>Points</th>
                                 <th>Style</th>
                                 <th>Track</th>
                                 <th>Date</th>
@@ -145,12 +149,16 @@ export default function PlayerProfile() {
                         </thead>
                         <tbody>
                             {recent_times.length === 0 ? (
-                                <tr><td colSpan="5" style={{ textAlign: 'center', padding: '2rem' }}>No times found</td></tr>
+                                <tr><td colSpan="9" style={{ textAlign: 'center', padding: '2rem' }}>No times found</td></tr>
                             ) : (
                                 recent_times.map((time, idx) => (
                                     <tr key={idx}>
                                         <td>{time.map}</td>
                                         <td className={styles.time}>{formatTime(time.time)}</td>
+                                        <td>{time.jumps || 0}</td>
+                                        <td>{time.strafes || 0}</td>
+                                        <td>{time.sync ? `${parseFloat(time.sync).toFixed(1)}%` : '0%'}</td>
+                                        <td>{Math.round(time.points) || 0}</td>
                                         <td>{STYLES[time.style] || `Style ${time.style}`}</td>
                                         <td>{TRACKS[time.track] || `Bonus ${time.track}`}</td>
                                         <td>{formatDate(time.date)}</td>

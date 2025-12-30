@@ -64,6 +64,13 @@ export default function Home() {
         return `STEAM_0:${y}:${z}`;
     };
 
+    // Format time to MM:SS.ms or SS.ms
+    const formatTime = (seconds) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = (seconds % 60).toFixed(2);
+        return mins > 0 ? `${mins}:${secs.padStart(5, '0')}` : `${secs}s`;
+    };
+
     // Fetch recent times/records
     useEffect(() => {
         setLoading(true);
@@ -133,14 +140,18 @@ export default function Home() {
                             <th>Map</th>
                             <th>Player</th>
                             <th>Time</th>
+                            <th>Jumps</th>
+                            <th>Strafes</th>
+                            <th>Sync</th>
+                            <th>Points</th>
                             <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {loading ? (
-                            <tr><td colSpan="4" style={{ textAlign: 'center', padding: '2rem' }}>Loading...</td></tr>
+                            <tr><td colSpan="8" style={{ textAlign: 'center', padding: '2rem' }}>Loading...</td></tr>
                         ) : data.length === 0 ? (
-                            <tr><td colSpan="4" style={{ textAlign: 'center', padding: '2rem' }}>No records found.</td></tr>
+                            <tr><td colSpan="8" style={{ textAlign: 'center', padding: '2rem' }}>No records found.</td></tr>
                         ) : (
                             data.map((row, i) => (
                                 <tr key={i}>
@@ -162,8 +173,12 @@ export default function Home() {
                                         </div>
                                     </td>
                                     <td>
-                                        <span className={styles.timeBadge}>{row.time}</span>
+                                        <span className={styles.timeBadge}>{formatTime(row.time)}</span>
                                     </td>
+                                    <td>{row.jumps || 0}</td>
+                                    <td>{row.strafes || 0}</td>
+                                    <td>{row.sync ? `${parseFloat(row.sync).toFixed(1)}%` : '0%'}</td>
+                                    <td>{Math.round(row.points) || 0}</td>
                                     <td className={styles.dateCell}>
                                         {new Date(row.date * 1000).toLocaleDateString()} {new Date(row.date * 1000).toLocaleTimeString()}
                                     </td>

@@ -13,7 +13,11 @@ if (empty($map)) {
             p.time, 
             p.auth, 
             u.name,
-            p.date
+            p.date,
+            p.jumps,
+            p.strafes,
+            p.sync,
+            p.points
         FROM playertimes p
         JOIN users u ON p.auth = u.auth
         WHERE p.map = ?

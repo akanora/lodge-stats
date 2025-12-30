@@ -25,7 +25,7 @@ function App() {
 
           <footer style={{ marginTop: '4rem', padding: '2rem', textAlign: 'center', color: 'var(--color-text-muted)', borderTop: '1px solid var(--color-border)' }}>
             <div className="container">
-              <p>&copy; {new Date().getFullYear()} Lodge Stats. Powered by Bhoptimer.</p>
+              <p>&copy; {new Date().getFullYear()} Lodge Stats. Powered by bhoptimer.</p>
             </div>
           </footer>
         </div>

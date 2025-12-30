@@ -37,7 +37,7 @@ if (empty($steamid)) {
         $player['avatar'] = $steamAvatar;
         
         // Build query for recent times with optional filters
-        $timesQuery = "SELECT p.map, p.style, p.track, p.time, p.date FROM playertimes p WHERE p.auth = ?";
+        $timesQuery = "SELECT p.map, p.style, p.track, p.time, p.date, p.jumps, p.strafes, p.sync, p.points FROM playertimes p WHERE p.auth = ?";
         $params = [$steamid];
         $types = "s";
         
